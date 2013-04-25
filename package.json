@@ -1,0 +1,36 @@
+{
+  "name": "jsonp-client",
+  "version": "0.1.0",
+  "description": "jsonp minimal client for the browser (1.4K) and Node.js",
+  "author": "Bermi Ferrer <bermi@bermilabs.com>",
+  "keywords": ["jsonp", "async", "browser", "node", "ajax", "crossdomain"],
+  "bugs": {
+    "url": "https://github.com/bermi/jsonp-client/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git://github.com/bermi/jsonp-client.git"
+    }
+  ],
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "http-get": "~0.5.9"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "expect.js": "~0.2.0",
+    "grunt": "~0.3.x"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
