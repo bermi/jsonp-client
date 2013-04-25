@@ -1,5 +1,7 @@
 # jsonp-client
 
+[![Build Status](https://secure.travis-ci.org/bermi/jsonp-client.png?branch=master)](http://travis-ci.org/bermi/jsonp-client)
+
 jsonp minimal client for the browser (1.4K or 0.74K gzipped) and Node.js
 
 On Node.js jsonp JavaScript code will run on a sandbox.
