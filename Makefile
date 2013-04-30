@@ -44,6 +44,6 @@ docclean:
 	rm -f docs/*.{1,html}
 
 
-clean: docclean test-clean-instrument test-watch test
+clean: docclean test-clean-instrument
 
-.PHONY: test build lint test-cov docclean dev docclean
+.PHONY: test build lint test-cov docclean dev
