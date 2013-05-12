@@ -4,12 +4,13 @@
   var expect = root.expect || require('expect.js'),
     jsonpClient,
     isNode = (typeof window === 'undefined'),
-    baseLocation = isNode ? __dirname + '/' : '';
+    baseLocation = isNode ? __dirname + '/' : root.baseLocation || '';
 
   if (isNode) {
     root.jsonpClient = "original";
     jsonpClient = require('../');
   } else {
+    mocha.setup({globals: ['one', 'two']});
     jsonpClient = root.jsonpClient;
   }
 
