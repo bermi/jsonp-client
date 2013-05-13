@@ -10,7 +10,6 @@
     root.jsonpClient = "original";
     jsonpClient = require('../');
   } else {
-    mocha.setup({globals: ['one', 'two']});
     jsonpClient = root.jsonpClient;
   }
 
