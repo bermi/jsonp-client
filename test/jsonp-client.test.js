@@ -37,6 +37,7 @@
           done();
         });
       });
+
       it('should get an array of URLS', function (done) {
         jsonpClient([baseLocation + 'fixtures/one.js?callback=one', baseLocation + 'fixtures/two.js?callback=two'], function (err, one, two) {
           if (err) { throw err; }
@@ -56,6 +57,14 @@
         it('should fail when no callback is included on the URL', function (done) {
           jsonpClient(baseLocation + 'fixtures/one.js', function (err, one, two) {
             expect(err).to.be.a(Error);
+            done();
+          });
+        });
+      } else {
+        it('should fall back to string parsing when the VM fails', function (done) {
+          jsonpClient(baseLocation + 'fixtures/invalid_syntax.js?callback=recipe_5712', function (err, configure_recipe) {
+            if (err) { throw err; }
+            expect(configure_recipe).to.have.keys(['success', 'message']);
             done();
           });
         });
