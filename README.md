@@ -38,6 +38,23 @@ or as an array of URLs
     jsonpClient([url1, url2], function (err, data1, data2) {
     });
 
+
+### Callbacks
+
+jsonp-client assumes you will explicitly define a callback on the URL.
+This is a design decistion aimed to simplify the interface of the jsonp-client library.
+
+Here is a sample method for automatically add callbacks to your URL's
+
+    function addCallback(url) {
+        // The URL already has a callback
+        if (url.match(/callback=[a-z]/i)) {
+            return url;
+        }
+        return url + ("&callback=cb" + Math.random()).replace('.', '');
+    }
+
+
 ## Testing
 
     $ make test
