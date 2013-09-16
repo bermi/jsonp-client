@@ -25,17 +25,17 @@ will be taken from the script contents.
 
 Single jsonp resource URL
 
-    jsonpClient.get(url, function (err, data) {
+    jsonpClient(url, function (err, data) {
     });
 
 Multiple URLs
 
-    jsonpClient.get(url1, url2, function (err, data1, data2) {
+    jsonpClient(url1, url2, function (err, data1, data2) {
     });
 
 or as an array of URLs
 
-    jsonpClient.get([url1, url2], function (err, data1, data2) {
+    jsonpClient([url1, url2], function (err, data1, data2) {
     });
 
 ## Testing
