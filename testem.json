@@ -11,6 +11,7 @@
     "/test": "test"
   },
   "launch_in_dev": ["Chrome", "Firefox", "Node"],
+  "launch_in_ci": ["Chrome", "Firefox", "Node"],
   "launchers": {
     "Node": {
       "command": "NODE_ENV=test ./node_modules/.bin/mocha --reporter tap",
