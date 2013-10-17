@@ -55,7 +55,7 @@
 
       if (!isNode) {
         it('should fail when no callback is included on the URL', function (done) {
-          jsonpClient(baseLocation + 'fixtures/one.js', function (err, one, two) {
+          jsonpClient(baseLocation + 'fixtures/one.js', function (err) {
             expect(err).to.be.a(Error);
             done();
           });
@@ -71,11 +71,21 @@
       }
 
       it('should fail when no file is found', function (done) {
-        jsonpClient(baseLocation + 'error', function (err, one, two) {
+        jsonpClient(baseLocation + 'error', function (err) {
           expect(err).to.be.a(Error);
           done();
         });
       });
+
+      if (!isNode) {
+        it('should complain if no callback is found', function (done) {
+          jsonpClient(baseLocation + 'fixtures/one.js?callback=invalid', function (err, data) {
+            expect(data).to.be(undefined);
+            expect(err).to.be.a(Error);
+            done();
+          });
+        });
+      }
 
     });
 
