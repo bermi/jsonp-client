@@ -1,3 +1,10 @@
+0.3.0 / 2013-10-17
+==================
+
+* Preventing capturing exceptions on callbacks are reported on https://gist.github.com/cbeley/a000f95e8938a836abfc
+* Removed window. function leaks. Warning, this might have break code where static jsonp callbacks are called concurrently.
+* Reporting back whenever the wrong jsonp callback is used on the browser. On node we can infer the callback.
+
 0.1.3 / 2013-05-14
 ==================
 
