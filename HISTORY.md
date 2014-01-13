@@ -1,3 +1,7 @@
+0.3.1 / 2014-01-13
+==================
+  * Fixing an issue where if the javascript is invalid for a passed in jsonp file, the callback could return twice.
+
 0.3.0 / 2013-10-17
 ==================
 
