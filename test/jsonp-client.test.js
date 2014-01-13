@@ -77,6 +77,20 @@
         });
       });
 
+      it('should fail and not callback twice with the retrieved file cannot be parsed', function (done) {
+        // If this test fails, you'll get either a timeout or "error is null".  It seems mocha has weird behavior
+        // if you try to call done a second time and throwing an error gets caught elsewhere because
+        // this bug is a result of try catches surrounding big blocks of code.  To fix this issue, searching for callbacks
+        // that may be within try, catch blocks.
+
+        jsonpClient(baseLocation + 'fixtures/invalid_syntax2.js', function (err) {
+          setTimeout(function () { // Timeout ensures the issue always occurs if present.
+            expect(err).to.be.a(Error);
+            done();
+          }, 1000);
+        });
+      });
+
       if (!isNode) {
         it('should complain if no callback is found', function (done) {
           jsonpClient(baseLocation + 'fixtures/one.js?callback=invalid', function (err, data) {
