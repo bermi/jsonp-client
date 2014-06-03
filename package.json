@@ -30,7 +30,7 @@
     "./jsonp-node.js": false
   },
   "dependencies": {
-    "http-get": "~0.5.9"
+    "http-get": "0.5.9"
   },
   "devDependencies": {
     "mocha": "~1.9.0",
