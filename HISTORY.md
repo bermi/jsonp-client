@@ -1,3 +1,15 @@
+1.0.0
+=================
+
+  * Browser detection behaviour has changed on environments that expose process.browser
+    this might break your existing app specially if you used jsdom & browserify
+    hence the version bump.
+
+0.6.x
+=================
+
+ * Swapping old request module with superagent.
+
 0.3.1 / 2014-01-13
 ==================
   * Fixing an issue where if the javascript is invalid for a passed in jsonp file, the callback could return twice.
