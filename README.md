@@ -42,7 +42,7 @@ or as an array of URLs
 ### Callbacks
 
 jsonp-client assumes you will explicitly define a callback on the URL.
-This is a design decistion aimed to simplify the interface of the jsonp-client library.
+This is a design decision aimed to simplify the interface of the jsonp-client library.
 
 Here is a sample method for automatically add callbacks to your URL's
 
