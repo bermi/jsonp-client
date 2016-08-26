@@ -8,6 +8,7 @@
 
   if (isNode) {
     root.jsonpClient = "original";
+    process.env.NODE_ENV = "test";
     jsonpClient = require('../');
   } else {
     jsonpClient = root.jsonpClient;
