@@ -1,5 +1,5 @@
 (function (root) {
-  "use strict";
+  'use strict';
 
   var expect = root.expect || require('expect.js'),
     jsonpClient,
@@ -7,8 +7,8 @@
     baseLocation = isNode ? __dirname + '/' : root.baseLocation || '';
 
   if (isNode) {
-    root.jsonpClient = "original";
     process.env.NODE_ENV = "test";
+    root.jsonpClient = 'original';
     jsonpClient = require('../');
   } else {
     jsonpClient = root.jsonpClient;
@@ -22,13 +22,13 @@
         var b = jsonpClient.noConflict(),
           currentVersion = b.noConflict();
         expect(currentVersion).to.be(b);
-        expect(root.jsonpClient).to.be("original");
+        expect(root.jsonpClient).to.be('original');
       });
     });
 
-    describe("When fetching jsonp from " + (isNode ? "Node.js" : "a browser"), function () {
-      var expected_one = {"one": "First"},
-        expected_two = {"two": "Second"};
+    describe('When fetching jsonp from ' + (isNode ? 'Node.js' : 'a browser'), function () {
+      var expected_one = {'one': 'First'},
+        expected_two = {'two': 'Second'};
 
       it('should get a list of URLS', function (done) {
         jsonpClient(baseLocation + 'fixtures/one.js?callback=one', baseLocation + 'fixtures/two.js?callback=two', function (err, one, two) {
@@ -79,7 +79,7 @@
       });
 
       it('should fail and not callback twice with the retrieved file cannot be parsed', function (done) {
-        // If this test fails, you'll get either a timeout or "error is null".  It seems mocha has weird behavior
+        // If this test fails, you'll get either a timeout or 'error is null'.  It seems mocha has weird behavior
         // if you try to call done a second time and throwing an error gets caught elsewhere because
         // this bug is a result of try catches surrounding big blocks of code.  To fix this issue, searching for callbacks
         // that may be within try, catch blocks.
@@ -94,14 +94,34 @@
 
       if (!isNode) {
         it('should complain if no callback is found', function (done) {
-          jsonpClient(baseLocation + 'fixtures/one.js?callback=invalid', function (err, data) {
+          jsonpClient(baseLocation + 'fixtures/one.js', function (err, data) {
             expect(data).to.be(undefined);
             expect(err).to.be.a(Error);
             done();
           });
         });
+      } else {
+        it('should parse the response when no callback is provided', function (done) {
+          jsonpClient(baseLocation + 'fixtures/one.js', function (err, data) {
+            if (err) { throw err; }
+            expect(data).to.eql({one: 'First'});
+            done();
+          });
+        });
       }
 
+    });
+
+    describe('Integration test', function () {
+      it('should allow performing a JSONp request to a different host',
+        function (done) {
+          jsonpClient('http://fluid-test-resources.s3.amazonaws.com/' +
+            'modules/jsonp-client/jsonp?callback=cb', function (err, data) {
+            if (err) { throw err; }
+            expect(data.data).to.be('foo bar');
+            done();
+          });
+        });
     });
 
   });

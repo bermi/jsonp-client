@@ -1,20 +1,18 @@
+BUILD_DEPS = $(wildcard lib/*.js)
+TEST_DEPS = $(wildcard test/*.test.js)
+
 test:
 	@NODE_ENV=test \
 		./node_modules/.bin/mocha \
 		--reporter spec \
 		$(TESTFLAGS)
 
-test-instrument:
-	jscoverage lib lib-cov
-
-test-clean-instrument:
-	rm -rf lib-cov
-
 test-coverage-report:
-	@NODE_ENV=coverage \
-	./node_modules/.bin/mocha \
-	--reporter html-cov > test/coverage.html && \
-	open test/coverage.html
+	echo "Generating coverage report, please stand by"
+	test -d node_modules/nyc/ || npm install nyc
+	./node_modules/.bin/nyc ./node_modules/.bin/mocha && \
+	./node_modules/.bin/nyc report --reporter=html
+	open coverage/jsonp-node.js.html
 
 test-coverage: test-clean-instrument test-instrument test-coverage-report
 
@@ -24,21 +22,15 @@ test-watch:
 test-browser:
 	open test/browser.html
 
-dev:
-	./node_modules/.bin/grunt watch
+all: test build
 
-dev-test:
-	make dev & \
-	make test-watch
+lint: $(BUILD_DEPS) $(TEST_DEPS)
+	./node_modules/.bin/eslint test/jsonp-client.test.js lib/*
 
-all:
-	./node_modules/.bin/grunt
+dist/jsonp-client.min.js: $(BUILD_DEPS)
+	./node_modules/.bin/uglifyjs $< > $@
 
-lint:
-	./node_modules/.bin/grunt lint
-
-build:
-	./node_modules/.bin/grunt build
+build: lint dist/jsonp-client.min.js
 
 docclean:
 	rm -f docs/*.{1,html}

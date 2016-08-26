@@ -17,12 +17,7 @@
   "bugs": {
     "url": "https://github.com/bermi/jsonp-client/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/bermi/jsonp-client.git"
@@ -34,13 +29,14 @@
     "./jsonp-node.js": false
   },
   "dependencies": {
-    "superagent": "1.2.0",
-    "superagent-mock": "1.1.0"
+    "superagent": "2.2.0",
+    "superagent-mock": "1.11.0"
   },
   "devDependencies": {
+    "eslint": "^3.3.1",
     "expect.js": "^0.3.1",
-    "grunt": "~0.3.17",
-    "mocha": "~2.2.4"
+    "mocha": "^2.2.4",
+    "uglify-js": "^2.7.3"
   },
   "scripts": {
     "test": "make test"
