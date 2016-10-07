@@ -1,6 +1,6 @@
 {
   "name": "jsonp-client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "jsonp minimal client for the browser (1.4K) and Node.js",
   "author": "Bermi Ferrer <bermi@bermilabs.com>",
   "keywords": [
